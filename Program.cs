@@ -13,6 +13,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Habilitar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTodo",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
+
 // Configurar el pipeline de solicitud HTTP
 if (app.Environment.IsDevelopment())
 {
@@ -21,5 +30,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("PermitirTodo");
 app.MapControllers();
 app.Run();
