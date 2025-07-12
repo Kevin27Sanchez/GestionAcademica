@@ -21,7 +21,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// ✅ Habilitar Swagger SIEMPRE (también en producción)
 app.UseSwagger();
 app.UseSwaggerUI();
 
